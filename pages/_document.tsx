@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
-export default function Document() {
+const Document = () => {
   return (
     <Html lang="en">
       <Head>
@@ -8,10 +8,12 @@ export default function Document() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body>
+      <body className="font-poppins bg-white min-h-screen dark:bg-nft-dark">
         <Main />
         <NextScript />
       </body>
     </Html>
   );
-}
+};
+
+export default Document;
