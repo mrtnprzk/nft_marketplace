@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NFTContext } from "../../context/NFTContex";
 import { Button } from "../index";
 
 interface Props {
@@ -6,14 +7,14 @@ interface Props {
 }
 
 const ButtonGroup = ({ onClick }: Props) => {
-  const hasConnected = false;
+  const { currentAccount, connectWallet } = useContext(NFTContext)
 
-  return hasConnected ? (
+  return currentAccount ? (
     <Button className="mx-2 rounded-xl" onClick={onClick}>
       Create
     </Button>
   ) : (
-    <Button className="mx-2 rounded-xl" onClick={onClick}>
+    <Button className="mx-2 rounded-xl" onClick={connectWallet}>
       Connect
     </Button>
   );

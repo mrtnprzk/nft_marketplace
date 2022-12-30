@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { NFTContext } from "../../context/NFTContex";
+
 interface Props {
   inputType: string;
   title: string;
@@ -6,6 +9,8 @@ interface Props {
 }
 
 const Input = ({ inputType, title, placeholder, handleClick }: Props) => {
+  const { nftCurrency } = useContext(NFTContext);
+
   return (
     <div className="mt-10 w-full">
       <p className="font-semibold text-xl text-nft-black-1 dark:text-white">
@@ -27,7 +32,7 @@ const Input = ({ inputType, title, placeholder, handleClick }: Props) => {
             className="flex w-full bg-white outline-none dark:bg-nft-black-1"
           />
           <p className="font-semibold text-xl text-nft-black-1 dark:text-white">
-            ETH
+            {nftCurrency}
           </p>
         </div>
       ) : (

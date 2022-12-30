@@ -20,7 +20,7 @@ const Navbar = () => {
   // useRouter
   return (
     <nav className="bg-white flexBetween w-full sticky top-0 z-10 p-4 flex-row border-b border-nft-gray-1 dark:border-nft-black-1 dark:bg-nft-dark">
-      <Logo />
+      <Logo onClick={() => setActive("Explore NFTs")} />
       <div className="flex flex-initial flex-row justify-end">
         <DarkModeInput />
         <div className="flex md:hidden">

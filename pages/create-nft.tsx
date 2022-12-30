@@ -1,22 +1,32 @@
-import { useCallback, useMemo, useState } from "react";
+import {
+  SetStateAction,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { useDropzone } from "react-dropzone";
+import { Accept, useDropzone } from "react-dropzone";
 import { Button, Input } from "../components";
 
 import images from "../assets";
+import { NFTContext } from "../context/NFTContex";
 
 const CreateNFT = () => {
-  const [fileUrl, setFileUrl] = useState(null);
+  const [fileUrl, setFileUrl] = useState<SetStateAction<any>>(null);
   const [formInput, setFormInput] = useState({
     name: "",
     price: "",
     description: "",
   });
   const { theme } = useTheme();
+  const { uploadToIPFS } = useContext(NFTContext);
 
-  const onDrop = useCallback(() => {
+  const onDrop = useCallback(async (acceptedFile: any) => {
     //upload imahe to the ipfs
+    const url = await uploadToIPFS(acceptedFile[0]);
+    setFileUrl(url);
   }, []);
 
   const {
@@ -51,7 +61,7 @@ const CreateNFT = () => {
           <p className="font-semibold text-xl text-nft-black-1 dark:text-white">
             Upload File
           </p>
-          <div className="mt-4">
+          <div className="mt-4 cursor-pointer">
             <div {...getRootProps()} className={fileStyle}>
               <input {...getInputProps()} />
               <div className="flexCenter flex-col text-center">
@@ -78,7 +88,7 @@ const CreateNFT = () => {
             {fileUrl && (
               <aside>
                 <div>
-                  <Image src={fileUrl} alt="" />
+                  <Image src={fileUrl} alt="" width={300} height={300} className='mx-auto mt-5'/>
                 </div>
               </aside>
             )}
@@ -116,7 +126,12 @@ const CreateNFT = () => {
           }
         />
         <div className="mt-7 w-full flex justify-end">
-          <Button className="rounded-xl" onClick={() => {console.log(formInput)}}>
+          <Button
+            className="rounded-xl"
+            onClick={() => {
+              console.log(formInput);
+            }}
+          >
             Create NFT
           </Button>
         </div>

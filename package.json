@@ -29,6 +29,7 @@
     "web3modal": "^1.9.10"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.30.0",
