@@ -13,7 +13,7 @@ const BestCreators = () => {
 
   const handleScroll = (direction: string) => {
     const { current } = scrollRef;
-    
+
     if (direction === "left") {
       current.scrollLeft -= 230;
     } else {
