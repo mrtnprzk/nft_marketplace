@@ -15,12 +15,13 @@ interface Props {
     image: string;
     price: string;
   };
+  onProfilePage?: boolean;
 }
 
-const NFTCard = ({ nft }: Props) => {
+const NFTCard = ({ nft, onProfilePage }: Props) => {
   const { nftCurrency } = useContext(NFTContext);
 
-  const nftAddress = shortenAddress(nft.seller);
+  const nftAddress = shortenAddress(onProfilePage ? nft.owner : nft.seller);
 
   return (
     <Link

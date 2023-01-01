@@ -5,8 +5,13 @@ import { makeId } from "../../utils/makeId";
 import images from "../../assets";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { shortenAddress } from "../../utils/shortenAddress";
 
-const BestCreators = () => {
+interface Props {
+  topCreators: any;
+}
+
+const BestCreators = ({ topCreators }: Props) => {
   const { theme } = useTheme();
   const parentRef = useRef<any>(null);
   const scrollRef = useRef<any>(null);
@@ -41,13 +46,13 @@ const BestCreators = () => {
           ref={scrollRef}
           className="flex flex-row w-max space-x-6 overflow-x-scroll no-scrollbar select-none"
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number, index) => (
+          {topCreators.map((creator: any, i: number) => (
             <CreatorCard
-              key={`creator-${index}`}
-              rank={number}
-              creatorImage={images[`creator${number}`]}
-              creatorName={`0x${makeId(3)}...${makeId(4)}`}
-              creatorEths={10 - index * 0.5}
+              key={creator.seller}
+              rank={i + 1}
+              creatorImage={images[`creator${i + 1}`]}
+              creatorName={shortenAddress(creator.seller)}
+              creatorEths={creator.sumall}
             />
           ))}
         </div>

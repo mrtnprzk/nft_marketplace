@@ -2,11 +2,14 @@ import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
 import { Banner, BestCreators, HotBids } from "../components";
 import { NFTContext } from "../context/NFTContex";
+import { getCreators } from "../utils/getTopCreators";
 
 export default function Home() {
   const { fetchNFTs } = useContext(NFTContext);
   const [nfts, setNfts] = useState([]);
 
+  const topCreators = getCreators(nfts)
+  
   useEffect(() => {
     fetchNFTs().then((items: any) => setNfts(items));
   }, []);
@@ -24,7 +27,7 @@ export default function Home() {
             childClassName="text-left xs:text-xl sm:text-2xl md:text-4xl"
           />
 
-          <BestCreators />
+          <BestCreators topCreators={topCreators}/>
           <HotBids nfts={nfts}/>
         </div>
       </div>

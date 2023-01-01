@@ -14,6 +14,10 @@ import NFTCard from "./Home/NFTCard";
 //CreateNFT
 import Input from "./CreateNFT/Input";
 
+//NFTDetails
+import Modal from "./NFTDetails/Modal";
+import PaymentBodyCmp from "./NFTDetails/PaymentBodyCmp";
+
 //Footer
 import Footer from "./Footer/Footer";
 import FooterSocial from "./Footer/FooterSocial";
@@ -23,6 +27,8 @@ import FooterLinks from "./Footer/FooterLinks";
 //Others
 import Button from "./Others/Button";
 import ButtonGroup from "./Others/ButtonGroup";
+import Loader from "./Others/Loader";
+import SearchBar from "./Others/SearchBar";
 
 export {
   //Navbar
@@ -37,9 +43,13 @@ export {
   CreatorCard,
   HotBids,
   NFTCard,
-  
+
   //CreateNFT
   Input,
+
+  //NFTDetails
+  Modal,
+  PaymentBodyCmp,
 
   //Footer
   Footer,
@@ -50,4 +60,6 @@ export {
   //Others
   Button,
   ButtonGroup,
+  Loader,
+  SearchBar,
 };
