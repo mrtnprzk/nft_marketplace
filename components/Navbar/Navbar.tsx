@@ -6,6 +6,26 @@ import Image from "next/image";
 import images from "../../assets";
 import { useTheme } from "next-themes";
 
+const checkActive = (active: any, setActive: any, router: any) => {
+  switch (router.pathname) {
+    case "/":
+      if (active !== "Explore NFTs") setActive("Explore NFTs");
+      break;
+    case "/listed-nfts":
+      if (active !== "Listed NFTs") setActive("Listed NFTs");
+      break;
+    case "/my-nfts":
+      if (active !== "My NFTs") setActive("My NFTs");
+      break;
+    case "/create-nft":
+      setActive("");
+      break;
+    default:
+      setActive("");
+      break;
+  }
+};
+
 const Navbar = () => {
   const [active, setActive] = useState("Explore NFTs");
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +37,10 @@ const Navbar = () => {
     router.push("/create-nft");
   };
 
-  // useRouter
+  useEffect(() => {
+    checkActive(active, setActive, router);
+  }, [router.pathname]);
+
   return (
     <nav className="bg-white flexBetween w-full sticky top-0 z-10 p-4 flex-row border-b border-nft-gray-1 dark:border-nft-black-1 dark:bg-nft-dark">
       <Logo onClick={() => setActive("Explore NFTs")} />

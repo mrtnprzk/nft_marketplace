@@ -1,18 +1,25 @@
 import Head from "next/head";
 import { useContext, useEffect, useState } from "react";
-import { Banner, BestCreators, HotBids } from "../components";
+import { Banner, BestCreators, HotBids, Loader } from "../components";
 import { NFTContext } from "../context/NFTContex";
 import { getCreators } from "../utils/getTopCreators";
 
 export default function Home() {
   const { fetchNFTs } = useContext(NFTContext);
   const [nfts, setNfts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const topCreators = getCreators(nfts)
-  
+  const topCreators = getCreators(nfts);
+
   useEffect(() => {
-    fetchNFTs().then((items: any) => setNfts(items));
+    setIsLoading(true);
+    fetchNFTs().then((items: any) => {
+      setNfts(items);
+      setIsLoading(false);
+    });
   }, []);
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -27,8 +34,18 @@ export default function Home() {
             childClassName="text-left xs:text-xl sm:text-2xl md:text-4xl"
           />
 
-          <BestCreators topCreators={topCreators}/>
-          <HotBids nfts={nfts}/>
+          {!isLoading && !nfts.length ? (
+            <div className="w-full text-center py-40">
+              <h1 className="text-3xl font-semibold">
+                That is weird... No NFTs for salw!
+              </h1>
+            </div>
+          ) : (
+            <>
+              <BestCreators topCreators={topCreators} />
+              <HotBids nfts={nfts} />
+            </>
+          )}
         </div>
       </div>
     </>

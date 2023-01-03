@@ -9,7 +9,7 @@ const Banner = ({ text, parentClassName, childClassName }: Props) => {
     <div
       className={`relative w-full flex items-center z-0 overflow-hidden nft-gradient ${parentClassName}`}
     >
-      <p className={`font-bold text-5xl leading-70 ${childClassName}`}>
+      <p className={`font-bold text-white text-5xl leading-70 ${childClassName}`}>
         {text}
       </p>
       <div className="absolute w-48 h-48 rounded-full white-bg -top-9 -left-16 -z-5 sm:w-32 sm:h-32"/>

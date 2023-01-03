@@ -38,7 +38,9 @@ const Modal = ({ header, body, footer, onClick }: Props) => {
             alt=""
             width={20}
             height={20}
-            className={`${theme === "light" && "filter invert"} cursor-pointer`}
+            className={`${
+              theme === "light" ? "filter invert" : ""
+            } cursor-pointer`}
             onClick={onClick}
           />
         </div>

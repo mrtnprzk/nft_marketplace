@@ -8,6 +8,7 @@ interface Props {
 }
 
 const MenuItems = ({ isMobile, active, setActive }: Props) => {
+
   const generateLink = (i: number) => {
     switch (i) {
       case 0:

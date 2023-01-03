@@ -21,7 +21,7 @@ const CreateNFT = () => {
     price: "",
     description: "",
   });
-  const router = useRouter()
+  const router = useRouter();
   const { theme } = useTheme();
   const { uploadToIPFS, createNFT } = useContext(NFTContext);
 
@@ -76,7 +76,7 @@ const CreateNFT = () => {
                     alt=""
                     width={100}
                     height={100}
-                    className={`${theme === "light" && "filter invert"}`}
+                    className={`${theme === "light" ? "filter invert" : ""}`}
                   />
                 </div>
                 <p className="font-semibold text-sm text-nft-black-1 dark:text-white">
@@ -90,7 +90,13 @@ const CreateNFT = () => {
             {fileUrl && (
               <aside>
                 <div>
-                  <Image src={fileUrl} alt="" width={300} height={300} className='mx-auto mt-5'/>
+                  <Image
+                    src={fileUrl}
+                    alt=""
+                    width={300}
+                    height={300}
+                    className="mx-auto mt-5"
+                  />
                 </div>
               </aside>
             )}

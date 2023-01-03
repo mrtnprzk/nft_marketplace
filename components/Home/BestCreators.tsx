@@ -27,7 +27,7 @@ const BestCreators = ({ topCreators }: Props) => {
   };
 
   const arrowClassName = `sm:hidden cursor-pointer w-10 h-10 z-10 ${
-    theme === "light" && "filter invert"
+    theme === "light" ? "filter invert" : ""
   }`;
 
   return (
